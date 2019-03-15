@@ -70,7 +70,9 @@ router.get('/doseg',(req,res)=>{
     if (error) {
       throw error
     }
-    res.status(201).send(`Segmentation Done: ${results.rows[0].name}`)
+
+    res.json({message: 'Segmentation Done'});
+  //  res.status(201).send(`Segmentation Done: ${results.rows[0].name}`)
   })
 
 });
