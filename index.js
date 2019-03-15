@@ -57,7 +57,7 @@ router.get('/', (request, response) => {
 
 const url = require('url');
 
-router.post('/doseg',(req,res)=>{
+router.get('/doseg',(req,res)=>{
 //  console.log(req.body);
   var body=req.body;
   var customer = 'Sam Man';
