@@ -17,7 +17,7 @@ client.connect();
 app.use(bodyParser.json());
 
 // url: http://localhost:3000/
-app.get('/', (request, response) => response.send('Hello World'));
+app.get('/', (request, response) => response.send('Nibs Segmentation'));
 
 // all routes prefixed with /api
 app.use('/api', router);
@@ -57,60 +57,20 @@ router.get('/', (request, response) => {
 
 const url = require('url');
 
-router.get('/stuff', (request, response) => {
-  var urlParts = url.parse(request.url, true);
-  var parameters = urlParts.query;
-  var myParam = parameters.myParam;
-  // e.g. myVenues = 12;
-
-//  var myResponse = `I multiplies the number you gave me (${myParam}) by 5 and got: ${myParam * 5}`;
-//  var myResponse = '({txns: {}})';
-
-  var txns = 'txns:' +  '['
-  +   '{ "date":xxxx, "Amount":10000 },'
-  +   '{ "date":xxx, "Amount":200 ] },'
-  +   '{ "date":xxx, "Amount":500 ] }'
-  + ']';
-
-  response.json({message: txns});
-});
-
-router.get('/stuffv1', (request, response) => {
-  var urlParts = url.parse(request.url, true);
-  var parameters = urlParts.query;
-  var myParam = parameters.myParam;
-  // e.g. myVenues = 12;
-
-  var myResponse = `I multiplies the number you gave me (${myParam}) by 10s and got: ${myParam * 10}`;
-
-  response.json({message: myResponse});
-});
-
-router.delete('/resetinvoice', (req, res) => {
-  client.query('DELETE FROM invoices', (error, results) => {
-    if (error) {
-      throw error
-    }
-    res.status(200).send(`Invoices is clear`)
-  })
-});
-
-router.post('/createinvoice',(req,res)=>{
+router.post('/doseg',(req,res)=>{
 //  console.log(req.body);
   var body=req.body;
-  var price = '1000';
-  var status = 'UnPaid';
-  var vin = body.VIN__c;
-  var customer = body.Contact_Name__c;
+  var customer = 'Sam Man';
+  var segment = 'SEGMENT A';
 
 //  res.json({message: 'invoice added'});
   //response.status(201).send(`Invoice added`);
 
-  client.query('INSERT INTO invoices (vin, status, price, customer) VALUES ($1, $2, $3, $4) RETURNING invoiceid', [vin, status, price, customer], (error, results) => {
+  client.query('UPDATE salesforce.contact SET segment__c = $1 WHERE name=$2 RETURNING name', [segment, customer], (error, results) => {
     if (error) {
       throw error
     }
-    res.status(201).send(`Invoice added with ID: ${results.rows[0].invoiceid}`)
+    res.status(201).send(`Segmentation Done: ${results.rows[0].name}`)
   })
 
 });
