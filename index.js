@@ -61,7 +61,7 @@ router.get('/doseg',(req,res)=>{
 //  console.log(req.body);
   var body=req.body;
   var customer = 'Sam Man';
-  var segment = 'BROWN';
+  var segment = 'DARK';
 
 //  res.json({message: 'invoice added'});
   //response.status(201).send(`Invoice added`);
