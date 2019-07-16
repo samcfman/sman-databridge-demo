@@ -75,7 +75,7 @@ router.get('/doseg',(req,res)=>{
   })
 */
 
-  var auth_data = querystring.stringify({
+  var auth_data = JSON.stringify({
     email: 'sman@salesforce.com',
     password: 'Qwer!234'
   });  
@@ -89,7 +89,8 @@ router.get('/doseg',(req,res)=>{
     path: '/api/login',
     method: 'POST',
     headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Content-Length': auth_data.length
     }  
   };
 
