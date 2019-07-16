@@ -74,30 +74,7 @@ app.use('/api', router);
 // this array is used for identification of allowed origins in CORS
 const originWhitelist = ['http://localhost:5000', 'https://sman-apiendpt.herokuapp.com', 'https://sman-org-dev-ed.lightning.force.com'];
 
-// middleware route that all requests pass through
-/*router.use((request, response, next) => {
-  console.log('Server info: Request received');
 
-  let origin = request.headers.origin;
-  console.log(origin);
-
-  // only allow requests from origins that we trust
-  if (originWhitelist.indexOf(origin) > -1) {
-    response.setHeader('Access-Control-Allow-Origin', origin);
-  }
-
-  // only allow get requests, separate methods by comma e.g. 'GET, POST'
-  response.setHeader('Access-Control-Allow-Methods', 'GET');
-  response.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
-  response.setHeader('Access-Control-Allow-Credentials', true);
-
-  // push through to the proper route
-
-  next();
-});
-*/
-// using router.get() to prefix our path
-// url: http://localhost:3000/api/
 router.get('/', (request, response) => {
   response.json({message: 'Hello, welcome to my server'});
 });
@@ -105,7 +82,6 @@ router.get('/', (request, response) => {
 const url = require('url');
 
 router.get('/doseg',(req,res)=>{
-//  console.log(req.body);
   var body=req.body;
   var customer = 'Sam Man';
   var segment = 'DARK';
@@ -127,11 +103,7 @@ router.get('/doseg',(req,res)=>{
     messages : [{user:user_email}]
   });  
 
-console.log(campaign_data);
-//     console.log('sam');
-//      console.log(campaign_data);
-
-//res.json({message: 'Segmentation Done'});
+  console.log(campaign_data);
 
   var campaign_data_options = {
     host: 'api.follow-apps.com',
