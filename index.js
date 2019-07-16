@@ -77,6 +77,8 @@ router.get('/doseg',(req,res)=>{
     "password": "Qwer!234"
   });  
 
+
+  res.json({message: 'Segmentation Done'});
   /*
   var auth_options = {
     host: 'https://api.follow-apps.com',
