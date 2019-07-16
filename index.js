@@ -66,17 +66,18 @@ router.get('/doseg',(req,res)=>{
   var segment = 'DARK';
 
 
-  client.query('UPDATE salesforce.contact SET segment__c = $1 WHERE name=$2 RETURNING name', [segment, customer], (error, results) => {
+/*  client.query('UPDATE salesforce.contact SET segment__c = $1 WHERE name=$2 RETURNING name', [segment, customer], (error, results) => {
     if (error) {
       throw error
     }
 
   //  res.json({message: 'Segmentation Done'});
   })
+*/
 
   var auth_data = querystring.stringify({
-    "email": "sman@salesforce.com",
-    "password": "Qwer!234"
+    email: "sman@salesforce.com",
+    password: "Qwer!234"
   });  
 
 
