@@ -93,13 +93,15 @@ router.get('/doseg',(req,res)=>{
   };
 
   // Set up the request
-  var req = https.request(auth_options, function(res) {
-      res.setEncoding('utf8');
-      res.on('data', function (chunk) {
+  var req = https.request(auth_options, function(resp) {
+      resp.setEncoding('utf8');
+      resp.on('data', function (chunk) {
           console.log('Response: ' + chunk);
 
-          res.json({message: 'Response: ' + chunk});
+          
       });
+
+      res.json({message: 'Response: ' + chunk});
   });
 
   req.on('error', error => {
