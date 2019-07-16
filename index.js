@@ -78,9 +78,9 @@ router.get('/doseg',(req,res)=>{
     "password": "Qwer!234"
   });  
 
-  var auth_options = {
+  /*var auth_options = {
     host: 'https://api.follow-apps.com',
-    port: '80',
+    port: '443',
     path: '/api/login',
     method: 'POST',
     headers: {
@@ -102,6 +102,7 @@ router.get('/doseg',(req,res)=>{
   
   req.write(auth_data);
   req.end();  
+  */
 });
 
 // set the server to listen on port 3000
