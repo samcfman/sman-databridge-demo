@@ -75,6 +75,8 @@ router.get('/doseg',(req,res)=>{
   })
 */
 
+  var auth_token ;
+
   var auth_data = JSON.stringify({
     email: 'sman@salesforce.com',
     password: 'Qwer!234'
@@ -94,6 +96,7 @@ router.get('/doseg',(req,res)=>{
     }  
   };
 
+
   // Set up the request
   var req = https.request(auth_options, function(resp) {
       resp.setEncoding('utf8');
@@ -103,11 +106,31 @@ router.get('/doseg',(req,res)=>{
           var obj = JSON.parse(chunk);
 
           obj.result;
+
+          auth_token = obj.result.auth_token;
           res.json({message: 'Response: ' + obj.result.auth_token});
           
       });
 
+      var campaign_data = JSON.stringify({
+        campaignKey: ['FACMPGN_qYKNqEbTiY82Q9v5'],
+        messages : [{user:'sambb@gmail.com'}]
+      });  
+    
+    
+      //res.json({message: 'Segmentation Done'});
       
+      var campaign_data_options = {
+        host: 'api.follow-apps.com',
+       // port: '443',
+        path: '/api/login',
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Content-Length': auth_data.length
+        }  
+      };
+        
   });
 
   req.on('error', error => {
