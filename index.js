@@ -63,8 +63,6 @@ router.get('/doseg',(req,res)=>{
   var customer = 'Sam Man';
   var segment = 'DARK';
 
-//  res.json({message: 'invoice added'});
-  //response.status(201).send(`Invoice added`);
 
   client.query('UPDATE salesforce.contact SET segment__c = $1 WHERE name=$2 RETURNING name', [segment, customer], (error, results) => {
     if (error) {
@@ -72,9 +70,38 @@ router.get('/doseg',(req,res)=>{
     }
 
     res.json({message: 'Segmentation Done'});
-  //  res.status(201).send(`Segmentation Done: ${results.rows[0].name}`)
   })
 
+
+  var auth_data = querystring.stringify({
+    "email": "sman@salesforce.com",
+    "password": "Qwer!234"
+  });  
+
+  var auth_options = {
+    host: 'https://api.follow-apps.com',
+    port: '80',
+    path: '/api/login',
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+    }  
+  };
+
+  // Set up the request
+  var req = http.request(auth_options, function(res) {
+      res.setEncoding('utf8');
+      res.on('data', function (chunk) {
+          console.log('Response: ' + chunk);
+      });
+  });
+
+  req.on('error', error => {
+    console.error(error)
+  });
+  
+  req.write(auth_data);
+  req.end();  
 });
 
 // set the server to listen on port 3000
