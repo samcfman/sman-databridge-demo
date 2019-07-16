@@ -99,7 +99,11 @@ router.get('/doseg',(req,res)=>{
       resp.setEncoding('utf8');
       resp.on('data', function (chunk) {
           console.log('Response: ' + chunk);
-          res.json({message: 'Response: ' + chunk});
+
+          var obj = JSON.parse(chunk);
+
+          obj.result;
+          res.json({message: 'Response: ' + obj.result});
           
       });
 
