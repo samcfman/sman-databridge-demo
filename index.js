@@ -1,6 +1,6 @@
 const express = require('express');
 const querystring = require('querystring');
-const http = require('http');
+const https = require('https');
 const app = express();
 const router = express.Router();
 //const port = 3000;
@@ -83,8 +83,8 @@ router.get('/doseg',(req,res)=>{
   //res.json({message: 'Segmentation Done'});
   
   var auth_options = {
-    host: 'https://api.follow-apps.com',
-   // port: '80',
+    host: 'api.follow-apps.com',
+    port: '443',
     path: '/api/login',
     method: 'POST',
     headers: {
@@ -93,7 +93,7 @@ router.get('/doseg',(req,res)=>{
   };
 
   // Set up the request
-  var req = http.request(auth_options, function(res) {
+  var req = https.request(auth_options, function(res) {
       res.setEncoding('utf8');
       res.on('data', function (chunk) {
           console.log('Response: ' + chunk);
