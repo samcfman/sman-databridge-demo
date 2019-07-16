@@ -108,39 +108,63 @@ router.get('/doseg',(req,res)=>{
           obj.result;
 
           auth_token = obj.result.auth_token;
-          res.json({message: 'Response: ' + obj.result.auth_token});
+
+          var campaign_data = JSON.stringify({
+            campaignKey: ['FACMPGN_qYKNqEbTiY82Q9v5'],
+            messages : [{user:'sambb@gmail.com'}]
+          });  
+        
+    //     console.log('sam');
+    //      console.log(campaign_data);
+        
+          //res.json({message: 'Segmentation Done'});
+          
+          var campaign_data_options = {
+            host: 'api.follow-apps.com',
+           // port: '443',
+            path: '/api/transac',
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Token ' + auth_token,
+                'Content-Length': auth_data.length,
+            }  
+          };
+      
+          var campaign_req = https.request(campaign_data_options, function(camp_resp) {
+            camp_resp.setEncoding('utf8');
+            camp_resp.on('data', function (chunk) {
+             //   console.log('Response: ' + chunk);
+      
+                //var obj = JSON.parse(chunk);
+      
+               // obj.result;
+      
+                //auth_token = obj.result.auth_token;
+                res.json({message: 'Response: ' + chunk});
+                
+            });
+            campaign_req.on('error', error => {
+              console.error(error)
+            });
+            
+            campaign_req.write(campaign_data);
+            campaign_req.end();  
+         
+//          res.json({message: 'Response: ' + obj.result.auth_token});
           
       });
 
-      var campaign_data = JSON.stringify({
-        campaignKey: ['FACMPGN_qYKNqEbTiY82Q9v5'],
-        messages : [{user:'sambb@gmail.com'}]
-      });  
-    
-      console.log('sam');
-      console.log(campaign_data);
-    
-      //res.json({message: 'Segmentation Done'});
+
+      req.on('error', error => {
+        console.error(error)
+      });
       
-      var campaign_data_options = {
-        host: 'api.follow-apps.com',
-       // port: '443',
-        path: '/api/login',
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Content-Length': auth_data.length
-        }  
-      };
-        
+      req.write(auth_data);
+      req.end();  
+      
   });
 
-  req.on('error', error => {
-    console.error(error)
-  });
-  
-  req.write(auth_data);
-  req.end();  
   
 });
 
