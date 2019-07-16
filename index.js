@@ -101,7 +101,7 @@ router.get('/doseg',(req,res)=>{
   var req = https.request(auth_options, function(resp) {
       resp.setEncoding('utf8');
       resp.on('data', function (chunk) {
-          console.log('Response: ' + chunk);
+       //   console.log('Response: ' + chunk);
 
           var obj = JSON.parse(chunk);
 
@@ -117,6 +117,8 @@ router.get('/doseg',(req,res)=>{
         messages : [{user:'sambb@gmail.com'}]
       });  
     
+      console.log('sam');
+      console.log(compaign_data);
     
       //res.json({message: 'Segmentation Done'});
       
