@@ -145,27 +145,27 @@ router.get('/doseg',(req,res)=>{
   };
 
   var campaign_req = https.request(campaign_data_options, function(camp_resp) {
-    camp_resp.setEncoding('utf8');
-    camp_resp.on('data', function (chunk) {
-    //   console.log('Response: ' + chunk);
+        camp_resp.setEncoding('utf8');
+        camp_resp.on('data', function (chunk) {
+        //   console.log('Response: ' + chunk);
 
-        //var obj = JSON.parse(chunk);
+            //var obj = JSON.parse(chunk);
 
-      // obj.result;
+          // obj.result;
 
-        //auth_token = obj.result.auth_token;
-        res.json({message: 'Response: ' + chunk});
-        
+            //auth_token = obj.result.auth_token;
+            res.json({message: 'Response: ' + chunk});
+            
+        });
     });
+
     campaign_req.on('error', error => {
       console.log ('sam error');
       console.error(error)
     });
     
     campaign_req.write(campaign_data);
-    campaign_req.end(); 
-  });
-  
+    campaign_req.end();   
 });
 
 
