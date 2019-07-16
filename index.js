@@ -79,8 +79,8 @@ router.get('/doseg',(req,res)=>{
   });  
 
 
-  res.json({message: 'Segmentation Done'});
-  /*
+  //res.json({message: 'Segmentation Done'});
+  
   var auth_options = {
     host: 'https://api.follow-apps.com',
     port: '443',
@@ -96,6 +96,8 @@ router.get('/doseg',(req,res)=>{
       res.setEncoding('utf8');
       res.on('data', function (chunk) {
           console.log('Response: ' + chunk);
+
+          res.json({message: 'Response: ' + chunk});
       });
   });
 
@@ -105,7 +107,7 @@ router.get('/doseg',(req,res)=>{
   
   req.write(auth_data);
   req.end();  
-  */
+  
 });
 
 // set the server to listen on port 3000
