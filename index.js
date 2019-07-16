@@ -121,12 +121,13 @@ router.get('/doseg',(req,res)=>{
 */
 
 //  var auth_token ;
-
+  var user_email = 'sambb@gmail.com';
   var campaign_data = JSON.stringify({
     campaignKey: ['FACMPGN_qYKNqEbTiY82Q9v5'],
-    messages : [{user:'sambb@gmail.com'}]
+    messages : [{user:usermail}]
   });  
-
+  
+console.log(campaign_data);
 //     console.log('sam');
 //      console.log(campaign_data);
 
@@ -147,20 +148,14 @@ router.get('/doseg',(req,res)=>{
   var campaign_req = https.request(campaign_data_options, function(camp_resp) {
         camp_resp.setEncoding('utf8');
         camp_resp.on('data', function (chunk) {
-        //   console.log('Response: ' + chunk);
-
-            //var obj = JSON.parse(chunk);
-
-          // obj.result;
-
-            //auth_token = obj.result.auth_token;
+   
             res.json({message: 'Response: ' + chunk});
             
         });
     });
 
     campaign_req.on('error', error => {
-      console.log ('sam error');
+ //     console.log ('sam error');
       console.error(error)
     });
     
