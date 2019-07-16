@@ -103,7 +103,7 @@ router.get('/doseg',(req,res)=>{
           var obj = JSON.parse(chunk);
 
           obj.result;
-          res.json({message: 'Response: ' + obj.result});
+          res.json({message: 'Response: ' + obj.result.auth_token});
           
       });
 
