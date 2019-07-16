@@ -118,7 +118,7 @@ router.get('/doseg',(req,res)=>{
       });  
     
       console.log('sam');
-      console.log(compaign_data);
+      console.log(campaign_data);
     
       //res.json({message: 'Segmentation Done'});
       
