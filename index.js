@@ -69,7 +69,7 @@ router.get('/doseg',(req,res)=>{
       throw error
     }
 
-    res.json({message: 'Segmentation Done'});
+  //  res.json({message: 'Segmentation Done'});
   })
 
   var auth_data = querystring.stringify({
