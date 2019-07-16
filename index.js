@@ -89,7 +89,7 @@ router.get('/doseg',(req,res)=>{
     path: '/api/login',
     method: 'POST',
     headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json'
     }  
   };
 
