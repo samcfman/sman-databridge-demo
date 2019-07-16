@@ -47,6 +47,7 @@ function getAuthCode() {
         obj.result;
 
         auth_token = obj.result.auth_token;
+        console.log('auth_token' + auth_token);
     });
   }); 
 
