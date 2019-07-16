@@ -13,7 +13,51 @@ const client = new Client ({
   ssl:true,
 });
 
+
 client.connect();
+
+var auth_code;
+getAuthCode();
+
+function getAuthCode() {
+
+  var auth_data = JSON.stringify({
+    email: 'sman@salesforce.com',
+    password: 'Qwer!234'
+  });  
+
+  var auth_options = {
+    host: 'api.follow-apps.com',
+   // port: '443',
+    path: '/api/login',
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+        'Content-Length': auth_data.length
+    }  
+  };
+
+  var req = https.request(auth_options, function(resp) {
+    resp.setEncoding('utf8');
+    resp.on('data', function (chunk) {
+     //   console.log('Response: ' + chunk);
+
+        var obj = JSON.parse(chunk);
+
+        obj.result;
+
+        auth_token = obj.result.auth_token;
+    });
+  }); 
+
+  req.on('error', (error) => {
+    console.error(error)
+  })
+  
+  req.write(data);
+  req.end();  
+}
+
 
 //app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json());
@@ -75,97 +119,56 @@ router.get('/doseg',(req,res)=>{
   })
 */
 
-  var auth_token ;
+//  var auth_token ;
 
-  var auth_data = JSON.stringify({
-    email: 'sman@salesforce.com',
-    password: 'Qwer!234'
+  var campaign_data = JSON.stringify({
+    campaignKey: ['FACMPGN_qYKNqEbTiY82Q9v5'],
+    messages : [{user:'sambb@gmail.com'}]
   });  
 
+//     console.log('sam');
+//      console.log(campaign_data);
 
-  //res.json({message: 'Segmentation Done'});
-  
-  var auth_options = {
+//res.json({message: 'Segmentation Done'});
+
+  var campaign_data_options = {
     host: 'api.follow-apps.com',
-   // port: '443',
-    path: '/api/login',
+  // port: '443',
+    path: '/api/transac',
     method: 'POST',
     headers: {
         'Content-Type': 'application/json',
-        'Content-Length': auth_data.length
+        'Authorization': 'Token ' + auth_token,
+        'Content-Length': campaign_data.length,
     }  
   };
 
+  var campaign_req = https.request(campaign_data_options, function(camp_resp) {
+    camp_resp.setEncoding('utf8');
+    camp_resp.on('data', function (chunk) {
+    //   console.log('Response: ' + chunk);
+
+        //var obj = JSON.parse(chunk);
+
+      // obj.result;
+
+        //auth_token = obj.result.auth_token;
+        res.json({message: 'Response: ' + chunk});
+        
+    });
+    campaign_req.on('error', error => {
+      console.error(error)
+    });
+    
+    campaign_req.write(campaign_data);
+    campaign_req.end(); 
+  });
+  
+});
+
 
   // Set up the request
-  var req = https.request(auth_options, function(resp) {
-      resp.setEncoding('utf8');
-      resp.on('data', function (chunk) {
-       //   console.log('Response: ' + chunk);
 
-          var obj = JSON.parse(chunk);
-
-          obj.result;
-
-          auth_token = obj.result.auth_token;
-
-          var campaign_data = JSON.stringify({
-            campaignKey: ['FACMPGN_qYKNqEbTiY82Q9v5'],
-            messages : [{user:'sambb@gmail.com'}]
-          });  
-        
-    //     console.log('sam');
-    //      console.log(campaign_data);
-        
-          //res.json({message: 'Segmentation Done'});
-          
-          var campaign_data_options = {
-            host: 'api.follow-apps.com',
-           // port: '443',
-            path: '/api/transac',
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Token ' + auth_token,
-                'Content-Length': auth_data.length,
-            }  
-          };
-      
-          var campaign_req = https.request(campaign_data_options, function(camp_resp) {
-            camp_resp.setEncoding('utf8');
-            camp_resp.on('data', function (chunk) {
-             //   console.log('Response: ' + chunk);
-      
-                //var obj = JSON.parse(chunk);
-      
-               // obj.result;
-      
-                //auth_token = obj.result.auth_token;
-                res.json({message: 'Response: ' + chunk});
-                
-            });
-            campaign_req.on('error', error => {
-              console.error(error)
-            });
-            
-            campaign_req.write(campaign_data);
-            campaign_req.end();  
-         
-//          res.json({message: 'Response: ' + obj.result.auth_token});
-          
-      });
-
-
-      req.on('error', error => {
-        console.error(error)
-      });
-      
-      req.write(auth_data);
-      req.end();  
-      
-  });
-
-  
 });
 
 // set the server to listen on port 3000
