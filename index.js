@@ -124,9 +124,9 @@ router.get('/doseg',(req,res)=>{
   var user_email = 'sambb@gmail.com';
   var campaign_data = JSON.stringify({
     campaignKey: ['FACMPGN_qYKNqEbTiY82Q9v5'],
-    messages : [{user:usermail}]
+    messages : [{user:user_mail}]
   });  
-  
+
 console.log(campaign_data);
 //     console.log('sam');
 //      console.log(campaign_data);
