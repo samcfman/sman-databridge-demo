@@ -72,12 +72,12 @@ router.get('/doseg',(req,res)=>{
     res.json({message: 'Segmentation Done'});
   })
 
-/*
   var auth_data = querystring.stringify({
     "email": "sman@salesforce.com",
     "password": "Qwer!234"
   });  
 
+  /*
   var auth_options = {
     host: 'https://api.follow-apps.com',
     port: '443',
