@@ -54,7 +54,7 @@ function getAuthCode() {
     console.error(error)
   })
   
-  req.write(data);
+  req.write(auth_data);
   req.end();  
 };
 
