@@ -134,7 +134,7 @@ router.get('/doseg',(req,res)=>{
 
   var campaign_data_options = {
     host: 'api.follow-apps.com',
-  // port: '443',
+    port: '443',
     path: '/api/transac',
     method: 'POST',
     headers: {
@@ -158,6 +158,7 @@ router.get('/doseg',(req,res)=>{
         
     });
     campaign_req.on('error', error => {
+      console.log ('sam error');
       console.error(error)
     });
     
