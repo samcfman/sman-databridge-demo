@@ -56,7 +56,7 @@ function getAuthCode() {
   
   req.write(data);
   req.end();  
-}
+};
 
 
 //app.use(bodyParser.urlencoded({ extended: false }))
@@ -166,10 +166,6 @@ router.get('/doseg',(req,res)=>{
   
 });
 
-
-  // Set up the request
-
-});
 
 // set the server to listen on port 3000
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
