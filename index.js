@@ -85,7 +85,7 @@ router.get('/doseg',(req,res)=>{
   
   var auth_options = {
     host: 'api.follow-apps.com',
-    port: '443',
+   // port: '443',
     path: '/api/login',
     method: 'POST',
     headers: {
