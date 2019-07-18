@@ -126,7 +126,7 @@ router.get('/doseg',(req,res)=>{
         camp_resp.setEncoding('utf8');
         camp_resp.on('data', function (chunk) {
    
-            res.json({message: 'Response: ' + chunk});
+            res.json({message: 'Campagin: ' + campaginId + ' ' + 'user:' + userid + ' ' + 'Response: ' + chunk});
             
         });
     });
