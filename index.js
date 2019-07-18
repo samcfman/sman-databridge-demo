@@ -97,10 +97,13 @@ router.get('/doseg',(req,res)=>{
 */
 
 //  var auth_token ;
-  var user_email = 'sambb@gmail.com';
+ //var user_email = 'sambb@gmail.com';
+ var userid =  req.query.user;
+
+
   var campaign_data = JSON.stringify({
     campaignKey: ['FACMPGN_qYKNqEbTiY82Q9v5'],
-    messages : [{user:user_email}]
+    messages : [{user:userid}]
   });  
 
   console.log(campaign_data);
