@@ -17,7 +17,7 @@ const client = new Client ({
 client.connect();
 
 var auth_code;
-getAuthCode();
+//getAuthCode();
 
 function getAuthCode() {
 
@@ -92,7 +92,7 @@ router.get('/doseg',(req,res)=>{
       throw error
     }
 
-  //  res.json({message: 'Segmentation Done'});
+    res.json({message: 'Segmentation Done'});
   });
 
 
