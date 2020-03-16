@@ -83,7 +83,7 @@ const url = require('url');
 
 router.get('/doseg',(req,res)=>{
   var body=req.body;
-  var customer = 'Sam Man';
+  var customer = 'Alison Chan';
   var segment = 'DARK';
 
 
