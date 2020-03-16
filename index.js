@@ -12,7 +12,7 @@ const client = new Client ({
   connectionString: process.env.DATABASE_URL,
   ssl:true,
 });
-
+console.log('start');
 
 client.connect();
 
