@@ -87,23 +87,22 @@ router.get('/doseg',(req,res)=>{
   var segment = 'DARK';
 
 
-/*  client.query('UPDATE salesforce.contact SET segment__c = $1 WHERE name=$2 RETURNING name', [segment, customer], (error, results) => {
+  client.query('UPDATE salesforce.contact SET segment__c = $1 WHERE name=$2 RETURNING name', [segment, customer], (error, results) => {
     if (error) {
       throw error
     }
 
   //  res.json({message: 'Segmentation Done'});
-  })
-*/
+  });
+
 
 //  var auth_token ;
  //var user_email = 'sambb@gmail.com';
- var userid =  req.query.user;
+/* var userid =  req.query.user;
  var campaginId = req.query.campaginid;
 
 
   var campaign_data = JSON.stringify({
-    //campaignKey: ['FACMPGN_qYKNqEbTiY82Q9v5'],
     campaignKey: [campaginId],
     messages : [{user:userid}]
   });  
@@ -126,7 +125,7 @@ router.get('/doseg',(req,res)=>{
         camp_resp.setEncoding('utf8');
         camp_resp.on('data', function (chunk) {
    
-            res.json({message: 'Campagin: ' + campaginId + ' ' + 'user:' + userid + ' ' + 'Response: ' + chunk});
+            res.json({message: 'Campagin: ' + campaginId + ' ' + '; user: ' + userid + ' ' + '; Response: ' + chunk});
             
         });
     });
@@ -137,7 +136,8 @@ router.get('/doseg',(req,res)=>{
     });
     
     campaign_req.write(campaign_data);
-    campaign_req.end();   
+    campaign_req.end();  
+    */ 
 });
 
 
