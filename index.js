@@ -76,7 +76,7 @@ const originWhitelist = ['http://localhost:5000', 'https://sman-apiendpt.herokua
 
 
 router.get('/', (request, response) => {
-  response.json({message: 'Hello, welcome to my server 111'});
+  response.json({message: 'Hello, welcome to my server 222'});
 });
 
 const url = require('url');
