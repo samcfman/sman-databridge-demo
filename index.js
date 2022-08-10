@@ -82,6 +82,8 @@ router.get('/', (request, response) => {
 const url = require('url');
 
 router.get('/doseg',(req,res)=>{
+
+  console.log('in do seg');
   var body=req.body;
   var customer = 'Alison Chan';
   var segment = 'DARK';
