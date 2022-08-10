@@ -95,7 +95,7 @@ router.get('/', (request, response) => {
 
 const url = require('url');
 
-router.get('/doseg',(req,res)=>{
+router.get('/doseg',async (req,res)=>{
 
   console.log('in do seg');
   var body=req.body;
