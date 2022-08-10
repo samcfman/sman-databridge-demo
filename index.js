@@ -95,6 +95,7 @@ router.get('/doseg',(req,res)=>{
       throw error
     }
 
+    console.log('after do seg');
     res.json({message: 'Segmentation Done' + results.fields[0]});
   });
 
