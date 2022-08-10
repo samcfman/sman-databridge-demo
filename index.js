@@ -17,7 +17,7 @@ const client = new Client ({
 });
 console.log('start');
 
-//client.connect();
+client.connect();
 
 var auth_code;
 //getAuthCode();
@@ -92,16 +92,30 @@ router.get('/doseg',(req,res)=>{
   var segment = 'DARK';
   console.log('before connect'); 
   
-  client.connect();
+  //client.connect();
 
   console.log('after connect'); 
+
+  client.query('SELECT segment__c from salesforce.contact name=$1 RETURNING name', [customer], (error, results) => {
+    if (error) {
+      console.error (error);
+      throw error
+    }
+
+    //client.end();
+    console.log('after query');
+  //  res.json({message: 'Segmentation Done' + results.fields[0]});
+  });
+
+
+
   client.query('UPDATE salesforce.contact SET segment__c = $1 WHERE name=$2 RETURNING name', [segment, customer], (error, results) => {
     if (error) {
       console.error (error);
       throw error
     }
 
-    client.end();
+    //client.end();
     console.log('after do seg');
     res.json({message: 'Segmentation Done' + results.fields[0]});
   });
