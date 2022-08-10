@@ -84,7 +84,7 @@ const url = require('url');
 router.get('/doseg',(req,res)=>{
   var body=req.body;
   var customer = 'Alison Chan';
-  var segment = 'DARKABC';
+  var segment = 'DARK_ABC';
 
 
   client.query('UPDATE salesforce.contact SET segment__c = $1 WHERE name=$2 RETURNING name', [segment, customer], (error, results) => {
