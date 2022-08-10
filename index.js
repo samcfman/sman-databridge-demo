@@ -6,8 +6,18 @@ const router = express.Router();
 //const port = 3000;
 const PORT = process.env.PORT || 5000;
 const bodyParser = require('body-parser');
-const { Client } = require ('pg');
+const { Client, Pool } = require ('pg');
 
+
+const Pool = new Pool ({
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false
+  }
+});
+
+
+/*
 const client = new Client ({
   connectionString: process.env.DATABASE_URL,
   ssl: {
@@ -18,6 +28,7 @@ const client = new Client ({
 console.log('start');
 
 client.connect();
+*/
 
 var auth_code;
 //getAuthCode();
@@ -96,7 +107,10 @@ router.get('/doseg',(req,res)=>{
 
   console.log('after connect'); 
 
-  client.query('SELECT segment__c from salesforce.contact name=$1 RETURNING name', [customer], (error, results) => {
+  const client = await pool.connect();
+ // const result = await client.query('SELECT * FROM test_table');  
+
+  await client.query('SELECT segment__c from salesforce.contact name=$1 RETURNING name', [customer], (error, results) => {
     if (error) {
       console.error (error);
       throw error
@@ -109,7 +123,7 @@ router.get('/doseg',(req,res)=>{
 
 
 
-  client.query('UPDATE salesforce.contact SET segment__c = $1 WHERE name=$2 RETURNING name', [segment, customer], (error, results) => {
+  await client.query('UPDATE salesforce.contact SET segment__c = $1 WHERE name=$2 RETURNING name', [segment, customer], (error, results) => {
     if (error) {
       console.error (error);
       throw error
