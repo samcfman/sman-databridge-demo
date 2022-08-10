@@ -9,7 +9,7 @@ const bodyParser = require('body-parser');
 const { Client, Pool } = require ('pg');
 
 
-const Pool = new Pool ({
+const pool = new Pool ({
   connectionString: process.env.DATABASE_URL,
   ssl: {
     rejectUnauthorized: false
