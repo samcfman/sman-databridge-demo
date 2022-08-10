@@ -105,11 +105,12 @@ router.get('/doseg',async (req,res)=>{
   
   //client.connect();
 
-  console.log('after connect'); 
+  
 
   const client = await pool.connect();
  // const result = await client.query('SELECT * FROM test_table');  
-
+ console.log('after connect'); 
+ 
   await client.query('SELECT segment__c from salesforce.contact name=$1 RETURNING name', [customer], (error, results) => {
     if (error) {
       console.error (error);
