@@ -9,15 +9,15 @@ const bodyParser = require('body-parser');
 const { Client, Pool } = require ('pg');
 
 
-const pool = new Pool ({
+/*const pool = new Pool ({
   connectionString: process.env.DATABASE_URL,
   ssl: {
     rejectUnauthorized: false
   }
 });
+*/
 
 
-/*
 const client = new Client ({
   connectionString: process.env.DATABASE_URL,
   ssl: {
@@ -28,7 +28,7 @@ const client = new Client ({
 console.log('start');
 
 client.connect();
-*/
+
 
 var auth_code;
 //getAuthCode();
@@ -95,23 +95,23 @@ router.get('/', (request, response) => {
 
 const url = require('url');
 
-router.get('/doseg',async (req,res)=>{
+router.get('/doseg', (req,res)=>{
 
   console.log('in do seg');
   var body=req.body;
   var customer = 'Alison Chan';
   var segment = 'DARK';
-  console.log('before connect'); 
+  //console.log('before connect'); 
   
   //client.connect();
 
   
 
-  const client = await pool.connect();
+  //const client = await pool.connect();
  // const result = await client.query('SELECT * FROM test_table');  
  console.log('after connect'); 
  
-  await client.query('SELECT segment__c from salesforce.contact name=$1 RETURNING name', [customer], (error, results) => {
+  /*await client.query('SELECT segment__c from salesforce.contact name=$1 RETURNING name', [customer], (error, results) => {
     if (error) {
       console.error (error);
       throw error
@@ -122,9 +122,9 @@ router.get('/doseg',async (req,res)=>{
   //  res.json({message: 'Segmentation Done' + results.fields[0]});
   });
 
+*/
 
-
-  await client.query('UPDATE salesforce.contact SET segment__c = $1 WHERE name=$2 RETURNING name', [segment, customer], (error, results) => {
+  client.query('UPDATE salesforce.contact SET segment__c = $1 WHERE name=$2 RETURNING name', [segment, customer], (error, results) => {
     if (error) {
       console.error (error);
       throw error
