@@ -91,7 +91,7 @@ router.get('/doseg', (req,res)=>{
   console.log('in do seg');
   var body=req.body;
   var customer = 'Alison Chan';
-  var segment = 'DARK_RRRRR';
+  var segment = 'DARK_PPPP';
 
  // client.query('UPDATE salesforce.contact SET segment__c = $1 WHERE name=$2 RETURNING name', [segment, customer], (error, results) => {
   client.query('UPDATE salesforce.contact SET segment__c = $1 RETURNING name', [segment], (error, results) => {  
